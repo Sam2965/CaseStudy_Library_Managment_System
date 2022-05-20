@@ -1,0 +1,28 @@
+server:
+    port: 8080
+eureka:
+   client:
+      service-url:
+       defaultZone: http://localhost:8761/eureka/
+
+spring:
+ application:
+  name: ApiGateWayForService
+ cloud:
+    gateway:
+      routes:
+      - id: Library_Admin_Service
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/api/v1/**
+      - id: Library_User_Service
+        uri: http://localhost:8084/
+        predicates:
+        - Path=/api/v1/**
+      - id: Login_Registrartion_Service
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/api/v1/**
+          
+      
+  
